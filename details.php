@@ -6,8 +6,8 @@
 <?php
     $entryid = $_GET['entryid'];
     $query = "select * from tabsold where entryid='$entryid'";
-    $result = mysql_query($query, $con);
-    $record = mysql_fetch_array($result);
+    $result = mysqli_query($conn, $query);
+    $record = mysqli_fetch_array($result);
     $bookid = $record["bookid"];
     $quantity = $record["quantity"];
     $user = $record["loginid"];
@@ -16,8 +16,8 @@
     $address3 = $record["address3"];
     
     $query = "select * from tabbooks where bookid='$bookid'";
-    $result2 = mysql_query($query, $con);
-    $record2 = mysql_fetch_array($result2);
+    $result2 = mysqli_query($conn, $query);
+    $record2 = mysqli_fetch_array($result2);
     $bookname = $record2['bookname'];
     $price = $record2['offerprice'];
 

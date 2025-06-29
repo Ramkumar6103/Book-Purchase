@@ -6,9 +6,10 @@
     $loginid = $_SESSION['loginid'];
 
     $query = "select * from tabcart where loginid='$loginid'";
-    $result = mysql_query($query, $con);
+    // $result = mysql_query($query, $con);
+        $result = $conn->query($query);
 
-    if (mysql_num_rows($result) > 0)
+    if (mysqli_num_rows($result) > 0)
     {
         echo '<table width="600" border="1" cellspacing="0" cellpadding="5">';
         echo '<tr>';
@@ -18,7 +19,7 @@
             echo '<th>Remove</th>';
         echo '</tr>';
         $total_amount = 0;
-        while ($record = mysql_fetch_array($result))
+        while ($record = mysqli_fetch_array($result))
         {
             echo '<td>';
                 echo '<a href=viewbook.php?bookid=' . $record["bookid"] . '><img src="./images/' . $record['bookid'] . '.jpg" width="144" height="96" /></a>';

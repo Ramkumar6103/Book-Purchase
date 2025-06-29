@@ -6,6 +6,6 @@
 
     include("dbcon.php");
     $query = "delete from tabcart where loginid='$loginid' and bookid='$bookid'";
-    mysql_query($query, $con);
+    mysqli_query( $conn, $query);
     header("Location: cart.php");
 ?>

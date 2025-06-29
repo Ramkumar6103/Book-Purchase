@@ -10,10 +10,10 @@
 		
 		
 		$query = "select * from tabusers where loginid='$loginid' and password='$password'";
-		$result = mysql_query($query, $con);
-		if (mysql_num_rows($result) == 1)
+		$result = mysqli_query( $conn, $query);
+		if (mysqli_num_rows($result) == 1)
 		{
-			$record = mysql_fetch_array($result);
+			$record = mysqli_fetch_array($result);
 			$username = $record["username"];
 			//Login Success
 			$_SESSION['loginid'] = $loginid;

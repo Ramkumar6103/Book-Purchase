@@ -60,3 +60,21 @@ CREATE TABLE `tabusers` (
 -- Dumping data for table `tabusers`
 -- 
 
+CREATE TABLE tabsold (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    userid INT NOT NULL,                -- ID of the user who placed the order
+    bookid INT NOT NULL,                -- ID of the book ordered
+    quantity INT NOT NULL,              -- Number of books ordered
+    price DECIMAL(10,2) NOT NULL,       -- Price at the time of order
+    status VARCHAR(50) DEFAULT 'PENDING', -- Status: PENDING, DELIVERED, CANCELLED, etc.
+    orderdate DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE tabcart (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    loginid INT NOT NULL,               -- User ID from session
+    bookid INT NOT NULL,                -- Book ID being added
+    quantity INT DEFAULT 1,             -- Quantity of the book
+    price DECIMAL(10,2) NOT NULL,       -- Price per unit at time of adding
+    added_on DATETIME DEFAULT CURRENT_TIMESTAMP
+);

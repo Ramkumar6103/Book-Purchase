@@ -7,21 +7,23 @@
 
     include("dbcon.php");
     $query = "select * from tabcart where loginid='$loginid' and bookid='$bookid'";
-    $result = mysql_query($query, $con);
+    // $result = mysql_query($query, $con);
+        $result = $conn->query($query);
 
-    if (mysql_num_rows($result) == 0)
+    if ($record = $result->fetch_assoc() == 0)
     {
         $query = "insert into tabcart (loginid, bookid, quantity, price) values('$loginid', '$bookid', '1', '$price')";
-        mysql_query($query, $con);
+        $conn->query($query);
         header("Location: cart.php");
     }
     else
     {
-        $record = mysql_fetch_array($result);
+        // $record = mysql_fetch_array($result);
+        $record = $result->fetch_assoc();
         $quantity = $record['quantity'];
         $quantity++;
         $query = "update tabcart set quantity='$quantity' where loginid='$loginid' and bookid='$bookid'";
-        mysql_query($query, $con);
+        $conn->query($query);
         header("Location: cart.php");
     }
 ?>

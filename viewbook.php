@@ -5,8 +5,10 @@
 <?php
     $bookid = $_GET['bookid'];
     $query = "select * from tabbooks where bookid='$bookid'";
-    $result = mysql_query($query, $con);
-    $record = mysql_fetch_array($result);
+    // $result = mysql_query($query, $con);
+    // $record = mysql_fetch_array($result);
+    $result = $conn->query($query);
+    $record = $result->fetch_assoc();
     $bookname = $record["bookname"];
     $author = $record["author"];
     $isbn = $record["isbn"];

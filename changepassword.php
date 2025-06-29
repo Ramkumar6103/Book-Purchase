@@ -7,8 +7,9 @@
         $loginid = $_SESSION['loginid'];
         $oldpassword = $_POST['txtOldPassword'];
         $query = "select * from tabusers where loginid='$loginid' and password='$oldpassword'";
-        $result = mysql_query($query, $con);
-        if (mysql_num_rows($result) == 1)
+        //$result = mysql_query($query, $con);
+        $result = $conn->query($query);
+        if ($result->num_rows == 1)
         {
             $newpassword = $_POST['txtNewPassword'];
             $confirmpassword = $_POST['txtConfirmPassword'];
@@ -16,9 +17,10 @@
             if ($newpassword == $confirmpassword)
             {
                 $query = "update tabusers set password='$newpassword' where loginid='" . $loginid . "'";
-                mysql_query($query, $con);
+                // mysql_query($query, $con);
+                    $result = $conn->query($query);
 
-                if (mysql_affected_rows($con) > 0)
+                if ($result->num_rows > 0)
                 {
                     $info = "Password update Successfully!";
                 }

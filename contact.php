@@ -1,11 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact details</title>
-</head>
-<body>
-    <h1> Contact details</h1>
-</body>
-</html>
+<?php session_start(); ?>
+<?php include("dbcon.php"); ?>
+<?php include("top.php"); ?>
+<h1>Contact Details</h1>
+<p>Phone : 9876543210</p>
+<p>Mail : book@gmail.com</p>
+<?php include("bottom.php"); ?>

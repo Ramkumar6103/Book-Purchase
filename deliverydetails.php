@@ -7,9 +7,9 @@
     $loginid = $_SESSION['loginid'];
 
     $query = "select * from tabsold where status='DELIVERY'";
-    $result = mysql_query($query, $con);
+    $result = mysqli_query( $conn, $query);
 
-    if (mysql_num_rows($result) > 0)
+    if (mysqli_num_rows($result) > 0)
     {
         echo '<table width="600" border="1" cellspacing="0" cellpadding="5">';
         echo '<tr>';
@@ -20,10 +20,11 @@
             echo '<th>Deliver</th>';
         echo '</tr>';
         $total_amount = 0;
-        while ($record = mysql_fetch_array($result))
+        while ($record = mysqli_fetch_array($result))
         {
             $bookid = $record["bookid"];
-            $record2 = mysql_fetch_array(mysql_query("select offerprice, quantity from tabbooks where bookid='$bookid'"));
+            $query2 = "select offerprice, quantity from tabbooks where bookid='$bookid'";
+            $record2 = mysqli_fetch_array(mysqli_query($conn,$query2));
             $price = $record2[0];
             $quantity = $record['quantity'];
             echo '<td>';

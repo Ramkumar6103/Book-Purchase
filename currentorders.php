@@ -5,10 +5,11 @@
 <?php
     $loginid = $_SESSION['loginid'];
 
-    $query = "select * from tabsold where loginid='$loginid' and status='SOLD'";
-    $result = mysql_query($query, $con);
+    $query = "select * from tabsold where userid='$loginid' and status='SOLD'";
+    // $result = mysql_query($query, $con);
+        $result = $conn->query($query);
 
-    if (mysql_num_rows($result) > 0)
+    if ($result->num_rows > 0)
     {
         echo '<table width="600" border="1" cellspacing="0" cellpadding="5">';
         echo '<tr>';
@@ -17,10 +18,13 @@
             echo '<th>Price</th>';
         echo '</tr>';
         $total_amount = 0;
-        while ($record = mysql_fetch_array($result))
+        while ($record = $result->fetch_assoc())
         {
             $bookid = $record["bookid"];
-            $record2 = mysql_fetch_array(mysql_query("select offerprice, quantity from tabbooks where bookid='$bookid'"));
+            $query2 = "select offerprice, quantity from tabbooks where bookid='$bookid'";
+            // $record2 = mysql_fetch_array(mysql_query("select offerprice, quantity from tabbooks where bookid='$bookid'"));
+            $result2 = $conn->query($query);
+            $record2 = $result2->fetch_assoc();
             $price = $record2[0];
             $quantity = $record['quantity'];
             echo '<td>';

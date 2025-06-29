@@ -14,24 +14,28 @@
         $address3 = $_POST['txtAddress3'];
 
         $query = "select * from tabbank where type='creditcard' and field1='$cardnumber' and field2='$pin'";
-        $result = mysql_query($query, $con);
+        // $result = mysql_query($query, $con);
+		    $result = $conn->query($query);
 
-        if (mysql_num_rows($result) == 1)
+        if ($result->num_rows == 1)
         {
             $query = "select * from tabcart where loginid='$loginid'";
-            $result = mysql_query($query, $con);
-            while ($record = mysql_fetch_array($result)) {
+            // $result = mysql_query($query, $con);
+			    $result = $conn->query($query);
+            while ($record = $result->fetch_assoc()) {
                 $bookid = $record[2];
                 $quantity = $record[3];
                 $query = "insert into tabsold(loginid, bookid, quantity, address1, address2, address3, status) values('$loginid', '$bookid', '$quantity', '$address1', '$address2', '$address3', 'SOLD')";
                 echo $query;
-                mysql_query($query, $con);
+                // mysql_query($query, $con);
+				$result = $conn->query($query);
             }
         }
-        if (mysql_affected_rows($con) > 0)
+        if ($result->num_rows > 0)
         {
             $query = "delete from tabcart where loginid='$loginid'";
-            mysql_query($query, $con);
+            // mysql_query($query, $con);
+			mysqli_query( $conn, $query);
             $info = "Books purchased successfully!";
             header("Location: cart.php");
         }

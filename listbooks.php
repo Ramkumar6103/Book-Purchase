@@ -4,9 +4,9 @@
 <h3>List Books</h3>
 <?php
     $query = "select * from tabbooks";
-    $result = mysql_query($query, $con);
+    $result = mysqli_query( $conn, $query);
 
-    if (mysql_num_rows($result) > 0)
+    if (mysqli_num_rows($result) > 0)
     {
         echo '<table width="600" border="1" cellspacing="0" cellpadding="5">';
         echo '<tr>';
@@ -15,7 +15,7 @@
             echo '<th>Price</th>';
         echo '</tr>';
         $total_amount = 0;
-        while ($record = mysql_fetch_array($result))
+        while ($record = mysqli_fetch_array($result))
         {
             $bookid = $record["bookid"];
             $price = $record["price"];

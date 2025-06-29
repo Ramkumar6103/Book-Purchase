@@ -18,9 +18,11 @@
 
         $query = "insert into tabbooks (bookid, bookname, author, isbn, category, quantity, language, price, offerprice) values ('$bookid', '$bookname', '$author', '$isbn', '$category', '$quantity', '$language', '$price', '$offerprice')";
 
-        mysql_query($query, $con);
+        // mysql_query($query, $con);
+            $result = $conn->query($query);
+            $record = $result->fetch_assoc();
 
-        if (mysql_affected_rows($con) > 0)
+        if ($result->num_rows > 0)
         {
             $info = "Book Added Successfully!";
 

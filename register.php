@@ -17,12 +17,12 @@
 		if ($password == $confirmpassword)
 		{
 			$query = "select * from tabusers where loginid='$loginid'";
-			$result = mysql_query($query, $con);
-			if (mysql_num_rows($result) == 0)
+			$result = mysqli_query( $conn, $query);
+			if (mysqli_num_rows($result) == 0)
 			{
 				$query = "insert into tabusers (username, gender, mobile, emailid, dob, loginid, password) values ('$username', '$gender', '$mobile', '$emailid', '$dob', '$loginid', '$password')";
-				mysql_query($query, $con);
-				if (mysql_affected_rows($con) > 0)
+				mysqli_query($conn, $query);
+				if (mysqli_affected_rows($conn) > 0)
 				{
 					$info = "Account created successfully!";
 				}
