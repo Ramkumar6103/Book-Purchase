@@ -1,3 +1,4 @@
+<?php session_start();?>
 <?php include("checkadmin.php"); ?>
 <?php include("top.php"); ?>
 <h3>Librarian Dashboard</h3>

@@ -1,4 +1,5 @@
 <?php
+    session_start();
     include("dbcon.php");
 
     $errorinfo = "";
@@ -19,10 +20,11 @@
         $query = "insert into tabbooks (bookid, bookname, author, isbn, category, quantity, language, price, offerprice) values ('$bookid', '$bookname', '$author', '$isbn', '$category', '$quantity', '$language', '$price', '$offerprice')";
 
         // mysql_query($query, $con);
-            $result = $conn->query($query);
-            $record = $result->fetch_assoc();
+            // $result = $conn->query($query);
+            $result = mysqli_query( $conn,$query);
+            //$record = $result->fetch_assoc();
 
-        if ($result->num_rows > 0)
+        if (mysqli_num_rows($result) > 0)
         {
             $info = "Book Added Successfully!";
 
